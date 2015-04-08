@@ -7,46 +7,58 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\work;
+use App\candidate;
 
 class vote extends Controller {
+	
 
 	public function view(){
-		return response('this is view ~</br><a href="./rule">rule</a>');
-	}
-	
-	public function rule(){
-		return response('this is rule ~</br><a href="./vote?id=1">vote</a></br><a href="./award">award</a>');
+		$candidates = candidate::all()->toArray();
+		usort($candidates, function ($a, $b) {
+			if ($a['vote'] == $b['vote']) {
+				return 0;
+			} else {
+				return ($a['vote'] < $b['vote']) ? 1 : -1;
+			}
+		});
+		#var_dump($candidates);
+		return view('view', [
+				"candidates" => $candidates,
+		]);
 	}
 	
 	public function vote(){
+		$msg;
 		$v = Validator::make(Input::all(),[
 				'id' => 'required|numeric'
 		]);
 		
-		if ($v->fails() || work::find(Input::get('id')) == null){
-			return response('no, you can\'t vote for nobody', 400);
+		if ($v->fails() || candidate::find(Input::get('id')) == null){
+			$msg = 'no, you can\'t vote for nobody';
 		}
 		
-		$ip = \Illuminate\Support\Facades\Request::ip();
-		
-		if (\App\vote::where('ip', '=', $ip)->count() != 0){
-			return response('no, you can\'t vote again', 400);
+		else {
+			$ip = \Illuminate\Support\Facades\Request::ip();
+			
+			if (\App\vote::where('ip', '=', $ip)->count() != 0){
+				$msg = '你不能重复投票。';
+			}
+			else{
+
+				$vote = new \App\vote();
+				$vote->work_id = Input::get('id');
+				$vote->ip = $ip;
+				$vote->save();
+					
+				$work = candidate::find(Input::get('id'));
+				$work->vote++;
+				$work->save();
+					
+				$msg = '感谢参与~';
+			}
 		}
 		
-		$vote = new \App\vote();
-		$vote->work_id = Input::get('id');
-		$vote->ip = $ip;
-		$vote->save();
-		
-		$work = work::find(Input::get('id'));
-		$work->votes++;
-		$work->save();
-		
-		return response('You have successfully voted for ' . Input::get('id') . '. Your ip is ' . $ip);
-	}
-	
-	public function award(){
-		return response('Yoha~ I\'m award!</br>-uadmin</br>-p888888</br><a href="./admin/index.php">admin</a>');
+		return response('<script stype="text/javascript">alert("'.$msg.'");window.location.href="/view"</script>');
 	}
 
 }
