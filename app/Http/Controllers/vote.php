@@ -29,6 +29,7 @@ class vote extends Controller {
 	
 	public function vote(){
 		$msg;
+		$vote = 0;
 		$v = Validator::make(Input::all(),[
 				'id' => 'required|numeric'
 		]);
@@ -55,10 +56,14 @@ class vote extends Controller {
 				$work->save();
 					
 				$msg = '感谢参与~';
+				$vote = $work->vote;
 			}
 		}
 		
-		return response('<script stype="text/javascript">alert("'.$msg.'");window.location.href="/view"</script>');
+		return response()->json([
+				"msg" => $msg,
+				"vote" => $vote
+		]);
 	}
 
 }

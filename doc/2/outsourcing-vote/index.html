@@ -9,7 +9,7 @@
 
 <body>
     <div id="wrapper">
-        <a class="admin" href="/admin/index.php" target="_blank"></a>
+        <a class="admin" href="http://westudio.us/" target="_blank"></a>
         <img class="sidepic" src="images/side.png" alt="side">
         <div class="main">
             <img class="img-word" src="images/word1.png" alt="word1">
@@ -37,15 +37,6 @@
     </div>
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script src="main.js"></script>
-    <script type="text/javascript">
-    @for ($i = 0; $i < count($candidates); $i++)
-    	addPic('./admin/{{$candidates[$i]["pic"]}}', '{{$candidates[$i]["name"]}}', {{$candidates[$i]["id"]}})
-    	voteNum({{$i + 1}}, {{$candidates[$i]["vote"]}}, {{$candidates[$i]["id"]}})
-	@endfor
-	@for ($i = 0; $i < ((count($candidates) < 3 ? $count($candidates) : 3)); $i++)
-		addGoodpic('./admin/{{$candidates[$i]["pic"]}}', '{{$candidates[$i]["name"]}}')
-	@endfor
-    </script>
 </body>
 
 </html>
