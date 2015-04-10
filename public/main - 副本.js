@@ -62,14 +62,11 @@ function addPic(url, text, id) {
 
 //插入优秀作品
 function addGoodpic(url, text) {
-//    修改
-    var num=$("#page3 .good-show").length+1;
     $("#page3").append("<div class='good-show'></div>");
     $(".good-show:last").append("<img class='good-pic' alt='pic' src='"+url+"'>");
     $(".good-show:last").append("<div class='good-text'>获奖作品</div>");
     $(".good-show:last").append("<div class='good-name'>"+text+"</div>");
-//    修改
-    $(".good-show:last").append("<img class='good-sidepic' alt='persons' src='images/person" + num + ".png'>");
+    $(".good-show:last").append("<img class='good-sidepic' alt='persons' src='images/persons.png'>");
 }
 //如下调用
 

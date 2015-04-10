@@ -50,15 +50,20 @@ addLoadEvent(changePage);
 addLoadEvent(setHeight);
 
 //插入作品
-function addPic(url, text, id) {
+function addPic(url, text) {
     var num=$("#page2 .works-show").length+1;
     $("#page2").append("<div class='works-show'></div>");
     $(".works-show:last").append("<img class='works-pic' alt='pic' src='"+url+"'>");
     $(".works-show:last").append("<img class='name-pic' src='images/fan.png' alt='fan'>");
     $(".works-show:last").append("<div class='works-name'>No."+num+ " "+text+"</div>");
-    $(".works-show:last").append("<div class='works-votebtn' onclick='actionVote(" + id + ")'>投我一票</div>");
+    $(".works-show:last").append("<div class='works-votebtn'>投我一票(<span id='num_voted'>0</span>)</div>");
 }
 //如下调用
+addPic("images/fan.png","张三");
+addPic("images/fan.png","张三");
+addPic("images/fan.png","张三");
+addPic("images/fan.png","张三");
+addPic("images/fan.png","张三");
 
 //插入优秀作品
 function addGoodpic(url, text) {
@@ -72,29 +77,30 @@ function addGoodpic(url, text) {
     $(".good-show:last").append("<img class='good-sidepic' alt='persons' src='images/person" + num + ".png'>");
 }
 //如下调用
-
-//得票数显示
-function voteNum(num_index, num_voted, id) {
-    var index = num_index-1;
-    $(".works-show:eq("+ index +") .works-votebtn").append("<span id='vn_" + id + "'>("+ num_voted +")</span>");
-}
-//如下调用
+addGoodpic("images/fan.png","张三");
+addGoodpic("images/fan.png","张三");
+addGoodpic("images/fan.png","张三");
+addGoodpic("images/fan.png","张三");
+addGoodpic("images/fan.png","张三");
+addGoodpic("images/fan.png","张三");
 
 //投票
-function actionVote(id){
+function actionVote(){
+    var thisbtn=this;
     $.ajax({
         type:"GET",
-        url:"./vote",
-        data: { id : id },
-		dataType: "json",
-        success: function(data){
-			if (data.vote != 0){
-				$('#vn_' + id).html('(' + data.vote + ')');
-			}
-            alert(data.msg);
+        url:"vote",
+        data: {id:1},
+        success: function(){
+            //得票数+1
+            var num= parseInt($("#num_voted",thisbtn).html());
+            $("#num_voted",thisbtn).html(num+1);
+            alert("投票成功");
         },
-        error: function(err){
-            alert("投票没有成功，请过一会儿再试试吧~");
+        error: function(){
+            alert("投票失败");
         }
     })
 }
+
+$(".works-votebtn").click(actionVote);
