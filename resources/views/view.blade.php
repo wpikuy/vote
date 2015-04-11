@@ -46,7 +46,7 @@
     	addPic('./admin/{{$candidates[$i]["pic"]}}', '{{$candidates[$i]["name"]}}', {{$candidates[$i]["id"]}})
     	voteNum({{$i + 1}}, {{$candidates[$i]["vote"]}}, {{$candidates[$i]["id"]}})
 	@endfor
-	@for ($i = 0; $i < ((count($candidates) < 3 ? $count($candidates) : 3)); $i++)
+	@for ($i = 0; $i < ((count($candidates) < 3 ? count($candidates) : 3)); $i++)
 		addGoodpic('./admin/{{$candidates[$i]["pic"]}}', '{{$candidates[$i]["name"]}}')
 	@endfor
     </script>
