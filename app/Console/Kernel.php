@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel {
 			foreach (vote::all()->all() as $vote){
 				$vote->delete();
 			}
-		});
+		})->dailyAt('00:00');
 	}
 
 }
