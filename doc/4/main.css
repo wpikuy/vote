@@ -69,6 +69,7 @@ h3{
     width: 315px;
     height: 438px;
 }
+/*
 @-webkit-keyframes animation-in {
     from {
         opacity: 0
@@ -140,19 +141,24 @@ h3{
         opacity: 0
     }
 }
+*/
 
 .animation-in {
+    /*
     -webkit-animation: animation-in 2s forwards;
     -o-animation: animation-in 2s forwards;
     animation: animation-in 2s forwards;
+*/
     
     display: block;
 }
 
 .animation-out {
+    /*
     -webkit-animation: animation-out 2s forwards;
     -o-animation: animation-out 2s forwards;
     animation: animation-out 2s forwards;
+*/
     
     display: none;
 }
@@ -249,7 +255,7 @@ h3{
 
 .works-pic {
     width: 160px;
-    height: 230px;
+    height: 222px;
     background-color: #A87F48;
 }
 
