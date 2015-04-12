@@ -23,10 +23,16 @@ class vote extends Controller {
 			}
 		});
 		*/
+		$winArray = [111, 112, 107, 67, 56, 57, 48, 30, 159, 148, 140];
+		$wins = [];
+		foreach ($winArray as $winId){
+			$wins[] = candidate::find($winId);
+		}
 		$candidates = array_reverse(candidate::all()->toArray());
 		#var_dump($candidates);
 		return view('view', [
 				"candidates" => $candidates,
+				"wins" => $wins
 		]);
 	}
 	
