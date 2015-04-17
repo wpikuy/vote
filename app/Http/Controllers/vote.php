@@ -23,16 +23,15 @@ class vote extends Controller {
 			}
 		});
 		*/
-		$winArray = [111, 112, 107, 67, 56, 57, 48, 30, 159, 148, 140];
-		$wins = [];
-		foreach ($winArray as $winId){
-			$wins[] = candidate::find($winId);
-		}
+// 		$winArray = [111, 112, 107, 67, 56, 57, 48, 30, 159, 148, 140];
+// 		$wins = [];
+// 		foreach ($winArray as $winId){
+// 			$wins[] = candidate::find($winId);
+// 		}
 		$candidates = array_reverse(candidate::all()->toArray());
-		#var_dump($candidates);
-		return view('view', [
-				"candidates" => $candidates,
-				"wins" => $wins
+		return view('newview', [
+				"candidates" => $candidates
+// 				"wins" => $wins
 		]);
 	}
 	
@@ -48,10 +47,13 @@ class vote extends Controller {
 		}
 		
 		else {
+			$id = Input::get('id');
 			$ip = \Illuminate\Support\Facades\Request::ip();
-			
-			if (\App\vote::where('ip', '=', $ip)->count() != 0){
-				$msg = '你不能重复投票。';
+			if (\App\vote::whereRaw('ip = "'.$ip.'" and work_id = '.$id)->count() != 0){
+				$msg = '你不能重复投票给一个项目。';
+			}
+			else if (\App\vote::where('ip', '=', $ip)->count() >= 5){
+				$msg = '你一天只能投5次。';
 			}
 			else{
 

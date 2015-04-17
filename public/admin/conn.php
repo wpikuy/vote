@@ -5,4 +5,6 @@
 
 	mysql_set_charset('utf-8');
 
+	mysql_query("set names 'utf8'");
+
  ?>
