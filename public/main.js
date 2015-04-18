@@ -15,7 +15,7 @@ function showIndex() {
     setTimeout(function () {
         $(".sidepic").addClass("animation-out");
         $(".main").addClass("animation-in");
-    }, 100);
+    }, 2000);
 }
 
 function setHeight() {
