@@ -13,6 +13,7 @@ class vote extends Controller {
 	
 
 	public function view(){
+		/*
 		$candidates = candidate::all()->toArray();
 		usort($candidates, function ($a, $b) {
 			if ($a['vote'] == $b['vote']) {
@@ -21,6 +22,8 @@ class vote extends Controller {
 				return ($a['vote'] < $b['vote']) ? 1 : -1;
 			}
 		});
+		*/
+		$candidates = array_reverse(candidate::all()->toArray());
 		#var_dump($candidates);
 		return view('view', [
 				"candidates" => $candidates,
