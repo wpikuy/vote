@@ -15,7 +15,7 @@ function showIndex() {
     setTimeout(function () {
         $(".sidepic").addClass("animation-out");
         $(".main").addClass("animation-in");
-    }, 2000);
+    }, 100);
 }
 
 function setHeight() {
@@ -45,17 +45,26 @@ function changePage() {
     $("#toPage1").click();
 }
 
-addLoadEvent(showIndex);
-addLoadEvent(changePage);
-addLoadEvent(setHeight);
+function showBigpic(){
+	$(".works-pic").click(function(){
+		window.open(this.src);
+	});
+}
+
+showIndex();
+changePage();
+setHeight();
+addLoadEvent(showBigpic);
 
 //插入作品
-function addPic(url, text, id) {
+$(function() {addPic});
+function addPic(url, text, info, id) {
     var num=$("#page2 .works-show").length+1;
     $("#page2").append("<div class='works-show'></div>");
     $(".works-show:last").append("<img class='works-pic' alt='pic' src='"+url+"'>");
     $(".works-show:last").append("<img class='name-pic' src='images/fan.png' alt='fan'>");
     $(".works-show:last").append("<div class='works-name'>No."+num+ " "+text+"</div>");
+    $(".works-show:last").append("<div class='class-name'>" + info + "</div>");
     $(".works-show:last").append("<div class='works-votebtn' onclick='actionVote(" + id + ")'>投我一票</div>");
 }
 //如下调用
