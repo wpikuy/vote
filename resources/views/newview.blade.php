@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>"觅食"手机摄影大赛 —— 华中科技大学 —— 点维团队出品</title>
     <link rel="stylesheet" href="main.css" />
 </head>
 
@@ -17,7 +17,7 @@
             
             <div class="content">
                 <div id="page1">
-                    <h1>华中科技大学<br/>第十五届校园文化节<br/>"摄食"手机摄影大赛</h1>
+                    <h1>华中科技大学<br/>"觅食"手机摄影大赛</h1>
                     <div class="title"><img src="images/fan.png" alt="fan">主题</div>
                     <p>中华文化源远流长，博大精深，五千年的灿烂文明，是每一个炎黄子孙的骄傲。如今各国文化，百家争鸣，作为新时代的大学生，历史的辉煌与屈辱，科技的发展与差距，鞭笞着我们朝着辉煌进发。青春律动，数风流人物，还看今朝。从最初的茹毛饮血时期到现在各色的美味佳肴，饮食是贯穿整个人类历史的主题，有着辉煌的过去，新时期更赋予了它新的内涵。值此校文化节之际，愿众华中大师生学子拿起自己手中的相机，以饮食文化为契机，更加关注我们华夏的优秀文化。</p>
                     <div class="title"><img src="images/fan.png" alt="fan">形式与内容</div>
